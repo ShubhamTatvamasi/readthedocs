@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  build:
+    image: python
+    working_dir: /var/opt/build/
+    volumes:
+      - "./build/:/var/opt/build/"
+      - "./docs/:/var/opt/docs/"
+    command:
+      - bash
+      - -c
+      - |
+        apt update
+        apt install -y python3-sphinx python3-sphinx-rtd-theme
+
+        sphinx-quickstart \
+          --no-sep \
+          --project "Test Project" \
+          --author "Shubham Tatvamasi" \
+          --release "0.1.0" \
+          --language "en" \
+          --ext-autodoc
+
+        sed -i 's/alabaster/sphinx_rtd_theme/' conf.py
+
+        cp -r ../docs/* .
+        make html
