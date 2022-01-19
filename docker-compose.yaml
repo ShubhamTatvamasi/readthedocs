@@ -19,7 +19,8 @@ services:
           --author "Shubham Tatvamasi" \
           --release "0.1.0" \
           --language "en" \
-          --ext-autodoc
+          --ext-autodoc \
+          --ext-githubpages
 
         sed -i 's/alabaster/sphinx_rtd_theme/' conf.py
 
